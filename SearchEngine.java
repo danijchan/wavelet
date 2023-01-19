@@ -1,17 +1,23 @@
 import java.io.IOException;
 import java.net.URI;
+import java.util.*;
 
 class Handler implements URLHandler {
     // The one bit of state on the server: a number that will be manipulated by
     // various requests.
     int num = 0;
+    int temp = 0;
 
     public String handleRequest(URI url) {
+
+        ArrayList<String> addedStrings = new ArrayList<String>();
         if (url.getPath().equals("/")) {
             return String.format("Dani's Number: %d", num);
-        } else if (url.getPath().equals("/increment")) {
-            num += 1;
-            return String.format("Number incremented!");
+        } else if (url.getPath().equals("/add")) {
+            String tempString = url.getQuery().split("=");
+            ArrayList.add(tempString);
+             
+
         } else {
             System.out.println("Path: " + url.getPath());
             if (url.getPath().contains("/add")) {
